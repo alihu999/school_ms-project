@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+
+    <record id="school_classes_form" model="ir.ui.view">
+        <field name="name">School.Classes.Form</field>
+        <field name="model">school.classes</field>
+        <field name="arch" type="xml">
+            <form>
+                <headr>
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="draft,active,complete,cancel"/>
+                </headr>
+                <sheet>
+                    <h1><field name="class_id" class="mb-2"/></h1>
+                   <group>
+                       <field name="educational_stage"/>
+                       <field name="total_number"/>
+                   </group>
+                    <notebook>
+                        <page string="students">
+                            <field name="students">
+                                <list>
+                                    <field name="student_id"/>
+                                    <field name="name"/>
+                                    <field name="father_name"/>
+                                    <field name="last_name"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+
+        </field>
+
+    </record>
+
+    <record id="school_classes_tree" model="ir.ui.view">
+        <field name="name">School.Classes.Tree</field>
+        <field name="model">school.classes</field>
+        <field name="arch" type="xml">
+            <list
+                    decoration-warning="state == 'draft'"
+                    decoration-success="state == 'active'"
+                    decoration-primary="state == 'complete'"
+                    decoration-danger="state == 'cancel'">
+                <field name="class_id"/>
+                <field name="educational_stage"/>
+                <field name="total_number"/>
+                <field name="current_number"/>
+            </list>
+        </field>
+
+    </record>
+
+    <record id="school_classes_action" model="ir.actions.act_window">
+        <field name="name"> School Classes Action</field>
+        <field name="res_model">school.classes</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="school_classes_tree"/>
+    </record>
+
+    <menuitem id="school_classes_menuitem"
+              name="Classes"
+              parent="school_ms_root"
+              action="school_classes_action"
+    />
+
+</odoo>
