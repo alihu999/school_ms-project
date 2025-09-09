@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <odoo>
-    <record id="open_change_state_wizard_form" model="ir.ui.view">
-        <field name="name">Open.Change.State.Wizard.Form</field>
-        <field name="model">change.state.wizard</field>
+    <record id="open_change_student_state_wizard_form" model="ir.ui.view">
+        <field name="name">Open.Change.Student.State.Wizard.Form</field>
+        <field name="model">change.student.state.wizard</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -17,9 +17,9 @@
         </field>
     </record>
 
-    <record id="open_change_state_wizard_action" model="ir.actions.act_window">
-        <field name="name">Change State Wizard</field>
-        <field name="res_model">change.state.wizard</field>
+    <record id="open_change_student_state_wizard_action" model="ir.actions.act_window">
+        <field name="name">Change Student State Wizard</field>
+        <field name="res_model">change.student.state.wizard</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>

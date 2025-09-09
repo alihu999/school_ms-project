@@ -8,6 +8,9 @@
         <field name="arch" type="xml">
             <form>
                 <headr>
+                     <button name="open_change_class_state_wizard"
+                            string="Change State"
+                            type="object" class="btn-primary"/>
                     <field name="state"
                            widget="statusbar"
                            statusbar_visible="draft,active,complete,cancel"/>
@@ -16,12 +19,14 @@
                     <h1><field name="class_id" class="mb-2"/></h1>
                    <group>
                        <field name="educational_stage"/>
+                       <field name="notes"/>
                        <field name="total_number"/>
+                       <field name="current_number"/>
                    </group>
                     <notebook>
-                        <page string="students">
+                        <page string="Students">
                             <field name="students">
-                                <list>
+                                <list edit="False" create="False" delete="False">
                                     <field name="student_id"/>
                                     <field name="name"/>
                                     <field name="father_name"/>
@@ -32,6 +37,7 @@
                         </page>
                     </notebook>
                 </sheet>
+                <chatter/>
             </form>
 
         </field>
@@ -57,7 +63,7 @@
     </record>
 
     <record id="school_classes_action" model="ir.actions.act_window">
-        <field name="name"> School Classes Action</field>
+        <field name="name"> School Classes</field>
         <field name="res_model">school.classes</field>
         <field name="view_mode">list,form</field>
         <field name="view_id" ref="school_classes_tree"/>

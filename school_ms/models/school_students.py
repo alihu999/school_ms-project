@@ -1,5 +1,6 @@
 from datetime import date
 from odoo import fields, models, api
+from odoo.exceptions import UserError
 
 
 
@@ -49,7 +50,7 @@ class SchoolStudent(models.Model):
     #Academic Information
 
     class_id = fields.Many2one('school.classes',
-                               string='Class', required=True, tracking=True)
+                               string='Class', tracking=True,readonly=True)
     educational_stage = fields.Selection([
         ('KG', 'Kindergarten'),
         ('EL', 'Elementary'),
@@ -72,33 +73,43 @@ class SchoolStudent(models.Model):
 
     @api.model
     def create(self, vals):
+        # Check if student_id is not provided or set to 'New'
         if vals.get('student_id', 'New') == 'New':
+
+            # Generate a new student ID using the predefined sequence
             vals['student_id'] =(self.env['ir.sequence'].
                                    next_by_code('school.student.sequence'))
+
+        # Call the superclass create method with the updated values
         return super(SchoolStudent, self).create(vals)
 
 
 
-    @api.depends('father_name', 'mother_name')
-    def _compute_emergency_contact(self):
-        for student in self:
-            if self.mother_name:
-                student.emergency_contact_id = self.mother_name
-            elif self.father_name:
-                student.emergency_contact_id = self.father_name
-            else:
-                student.emergency_contact_id = False
 
     @api.depends('date_of_birth')
     def _compute_age(self):
+
+        # Get today's date for age calculation
         today = date.today()
+
+        # Iterate through all records in self
         for rec in self:
+
+            # Check if date_of_birth is set for this record
             if rec.date_of_birth:
+
+                # Calculate age by subtracting birth year from current year
                 rec.age=today.year-rec.date_of_birth.year
 
-    def open_change_state_wizard(self):
-        action=self.env['ir.actions.actions']._for_xml_id("school_ms.open_change_state_wizard_action")
+    def open_change_student_state_wizard(self):
+
+        # Retrieve the XML action definition for the student state wizard
+        action=self.env['ir.actions.actions']._for_xml_id("school_ms.open_change_student_state_wizard_action")
+
+        # Add context with student's full name (combined first and last name) and current state
         action['context']={'name':f"{self.name} {self.last_name}" ,'state':self.state}
+
+        # Return the action to open the wizard
         return action
 
 

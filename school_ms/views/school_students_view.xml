@@ -26,7 +26,7 @@
         <field name="arch" type="xml">
             <form>
                 <headr>
-                    <button name="open_change_state_wizard"
+                    <button name="open_change_student_state_wizard"
                             string="Change State"
                             type="object" class="btn-primary"/>
                     <field name="state"

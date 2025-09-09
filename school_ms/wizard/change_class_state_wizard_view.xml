@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <record id="open_change_class_state_wizard_form" model="ir.ui.view">
+        <field name="name">Open.Change.class.State.Wizard.Form</field>
+        <field name="model">change.class.state.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h1><field name="class_id" class="mb-2" readonly="True"/></h1>
+                    <group>
+                        <field name="state"/>
+                        <field name="reason"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="open_change_class_state_wizard_action" model="ir.actions.act_window">
+        <field name="name">Change class State Wizard</field>
+        <field name="res_model">change.class.state.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
