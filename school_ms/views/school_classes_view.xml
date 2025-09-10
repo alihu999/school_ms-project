@@ -18,6 +18,7 @@
                 <sheet>
                     <h1><field name="class_id" class="mb-2"/></h1>
                    <group>
+                       <field name="grad"/>
                        <field name="educational_stage"/>
                        <field name="notes"/>
                        <field name="total_number"/>
@@ -59,14 +60,60 @@
                 <field name="current_number"/>
             </list>
         </field>
+    </record>
 
+    <record id="school_classes_kanban" model="ir.ui.view">
+        <field name="name">School.Classes.Kanban</field>
+        <field name="model">school.classes</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="grad">
+                <template>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_record_title">
+                                <field name="class_id"/>
+                            </div>
+                            <div>
+                             Educational Stage:<field name="educational_stage"/>
+                            </div>
+                            <div>
+                             Total Number:<field name="total_number"/>
+                            </div>
+                            <div>
+                             Current Number:<field name="current_number"/>
+                            </div>
+                            <div>
+                                <field name="state" widget="badge"
+                                       decoration-warning="state == 'draft'"
+                                       decoration-success="state == 'active'"
+                                       decoration-primary="state == 'complete'"
+                                       decoration-danger="state == 'cancel'"/>
+                            </div>
+                        </div>
+                    </t>
+                </template>
+            </kanban>
+        </field>
+
+    </record>
+
+    <record id="school_classes_search" model="ir.ui.view">
+        <field name="name">School.Classes.Search</field>
+        <field name="model">school.classes</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter name="group_by_grad" string="Grop By Grad" context="{'group_by':'grad'}"/>
+                <filter name="group_by_educational_stage"
+                        string="Grop By Educational Stage" context="{'group_by':'educational_stage'}"/>
+            </search>
+        </field>
     </record>
 
     <record id="school_classes_action" model="ir.actions.act_window">
         <field name="name"> School Classes</field>
         <field name="res_model">school.classes</field>
-        <field name="view_mode">list,form</field>
-        <field name="view_id" ref="school_classes_tree"/>
+        <field name="view_mode">list,form,kanban</field>
+        <field name="view_id" ref="school_classes_kanban"/>
     </record>
 
     <menuitem id="school_classes_menuitem"

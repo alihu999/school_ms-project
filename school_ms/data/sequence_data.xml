@@ -10,36 +10,79 @@
             <field name="prefix">STU</field>
             <field name="padding">6</field>
         </record>
-    </data>
 
-    <data>
-        <record id="seq_Kindergarten_classes" model="ir.sequence">
-            <field name="name">Kindergarten Classes Sequence </field>
-            <field name="code">kindergarten.classes.sequence</field>
-            <field name="prefix">KG</field>
+
+        <record id="first_grad_seq" model="ir.sequence">
+            <field name="name"> First Grad Sequence </field>
+            <field name="code"> first.grad.sequence</field>
+            <field name="prefix">EL/FG/</field>
             <field name="padding">2</field>
         </record>
-
-        <record id="seq_Elementary_classes" model="ir.sequence">
-            <field name="name">Elementary Classes Sequence </field>
-            <field name="code">elementary.classes.sequence</field>
-            <field name="prefix">EL</field>
+        <record id="second_grad_seq" model="ir.sequence">
+            <field name="name"> Second Grad Sequence </field>
+            <field name="code">second.grad.sequence</field>
+            <field name="prefix">EL/SG/</field>
             <field name="padding">2</field>
         </record>
-
-        <record id="seq_Basic_classes" model="ir.sequence">
-            <field name="name">Basic Classes Sequence </field>
-            <field name="code">basic.classes.sequence</field>
-            <field name="prefix">BA</field>
+        <record id="third_grad_seq" model="ir.sequence">
+            <field name="name"> third Grad Sequence </field>
+            <field name="code">third.grad.sequence</field>
+            <field name="prefix">EL/TG/</field>
             <field name="padding">2</field>
         </record>
-
-        <record id="seq_Secondary_classes" model="ir.sequence">
-            <field name="name">Secondary Classes Sequence </field>
-            <field name="code">secondary.classes.sequence</field>
-            <field name="prefix">SE</field>
+        <record id="fourth_grad_seq" model="ir.sequence">
+            <field name="name"> Fourth Grad Sequence </field>
+            <field name="code">fourth.grad.sequence</field>
+            <field name="prefix">EL/FOG/</field>
             <field name="padding">2</field>
         </record>
-
+        <record id="fifth_grad_seq" model="ir.sequence">
+            <field name="name"> Fifth Grad Sequence </field>
+            <field name="code">fifth.grad.sequence</field>
+            <field name="prefix">EL/FIG/</field>
+            <field name="padding">2</field>
+        </record>
+        <record id="sixth_grad_seq" model="ir.sequence">
+            <field name="name"> Sixth Grad Sequence </field>
+            <field name="code">sixth.grad.sequence</field>
+            <field name="prefix">EL/SXG/</field>
+            <field name="padding">2</field>
+        </record>
+        <record id="seventh_grad_seq" model="ir.sequence">
+            <field name="name"> Seventh Grad Sequence </field>
+            <field name="code">seventh.grad.sequence</field>
+            <field name="prefix">BA/SEG/</field>
+            <field name="padding">2</field>
+        </record>
+        <record id="eight_grad_seq" model="ir.sequence">
+            <field name="name"> Eight Grad Sequence </field>
+            <field name="code">eight.grad.sequence</field>
+            <field name="prefix">BA/EG/</field>
+            <field name="padding">2</field>
+        </record>
+        <record id="ninth_grad_seq" model="ir.sequence">
+            <field name="name"> Ninth Grad Sequence </field>
+            <field name="code">ninth.grad.sequence</field>
+            <field name="prefix">BA/NG/</field>
+            <field name="padding">2</field>
+        </record>
+        <record id="tenth_grad_seq" model="ir.sequence">
+            <field name="name"> Tenth Grad Sequence </field>
+            <field name="code">tenth.grad.sequence</field>
+            <field name="prefix">SE/TEG/</field>
+            <field name="padding">2</field>
+        </record>
+        <record id="eleventh_grad_seq" model="ir.sequence">
+            <field name="name"> Eleventh Grad Sequence </field>
+            <field name="code">eleventh.grad.sequence</field>
+            <field name="prefix">SE/ELG/</field>
+            <field name="padding">2</field>
+        </record>
+        <record id="twelfth_grad_seq" model="ir.sequence">
+            <field name="name"> Twelfth Grad Sequence </field>
+            <field name="code">twelfth.grad.sequence</field>
+            <field name="prefix">SE/TWG/</field>
+            <field name="padding">2</field>
+        </record>
     </data>
 </odoo>

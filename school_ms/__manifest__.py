@@ -31,6 +31,7 @@ Long description of module's purpose
         'wizard/change_class_state_wizard_view.xml',
         'views/school_students_view.xml',
         'views/school_classes_view.xml',
+        'views/study_material_view.xml',
         'data/sequence_data.xml',
 
     ],

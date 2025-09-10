@@ -52,11 +52,10 @@ class SchoolStudent(models.Model):
     class_id = fields.Many2one('school.classes',
                                string='Class', tracking=True,readonly=True)
     educational_stage = fields.Selection([
-        ('KG', 'Kindergarten'),
         ('EL', 'Elementary'),
         ('BA', 'Basic'),
         ('SE', 'Secondary'),
-    ], required=True, default='KG')
+    ], required=True, default='EL')
     note = fields.Html(string='Note')
 
 

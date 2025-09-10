@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+
+    <record id="study_materials_list" model="ir.ui.view">
+        <field name="name">Study.Materials.List</field>
+        <field name="model">study.materials</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="educational_stage"/>
+                <field name="total_mark"/>
+                <field name="passing_mark"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="study_materials_form" model="ir.ui.view">
+        <field name="name">Study.Materials.Form</field>
+        <field name="model">study.materials</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="educational_stage"/>
+                        <field name="total_mark"/>
+                        <field name="passing_mark"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="study_material_action" model="ir.actions.act_window">
+        <field name="name">Study Material</field>
+        <field name="res_model">study.materials</field>
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="study_materials_list"/>
+    </record>
+    <menuitem id="study_material_menuitem"
+          name="Study Material"
+          parent="school_ms_root"
+          action="study_material_action"/>
+</odoo>

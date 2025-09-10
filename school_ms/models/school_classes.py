@@ -9,11 +9,15 @@ class SchoolClass(models.Model):
 
     class_id = fields.Char('Name',readonly=True,tracking=True,default='New')
     educational_stage=fields.Selection([
-        ('KG','Kindergarten'),
         ('EL','Elementary'),
         ('BA','Basic'),
         ('SE','Secondary'),
-    ],required=True,default='KG')
+    ],readonly=True)
+    grad=fields.Selection([
+        ("first",'First Grad'),('second','Second Grad'),('third','Third Grad'),('fourth','Fourth Grad'),
+        ('fifth','Fifth Grad'),('sixth','Sixth Grad'),('seventh','Seventh Grad'),('eight','Eight Grad'),
+        ('ninth','Ninth Grad'),('tenth','Tenth Grad'),('eleventh','Eleventh Grad'),('twelfth','Twelfth Grad')
+    ])
     total_number=fields.Integer('Total Number of Students',required=True,tracking=True)
     current_number=fields.Integer('Current Number of Students',
                                   required=True,tracking=True,
@@ -31,25 +35,34 @@ class SchoolClass(models.Model):
 
     @api.model
     def create(self,vals):
-        # Check if 'class_id' is not provided or set to 'New'
+        # Map the 'grad' value to the correct sequence code
+        grad_to_code = {
+            'first': 'first.grad.sequence',
+            'second': 'second.grad.sequence',
+            'third': 'third.grad.sequence',
+            'fourth': 'fourth.grad.sequence',
+            'fifth': 'fifth.grad.sequence',
+            'sixth': 'sixth.grad.sequence',
+            'seventh': 'seventh.grad.sequence',
+            'eight': 'eight.grad.sequence',
+            'ninth': 'ninth.grad.sequence',
+            'tenth': 'tenth.grad.sequence',
+            'eleventh': 'eleventh.grad.sequence',
+            'twelfth': 'twelfth.grad.sequence',
+        }
+        sequence_code = grad_to_code.get(vals.get('grad'))
         if vals.get('class_id','New')=='New':
+            vals['class_id'] = self.env['ir.sequence'].next_by_code(sequence_code)
+        if vals.get('grad') in list(grad_to_code.keys())[0:6]:
+            vals['educational_stage']="EL"
+        elif vals.get('grad') in list(grad_to_code.keys())[6:9]:
+            vals['educational_stage']="BA"
+        else:
+            vals['educational_stage']="SE"
 
-            # Assign sequence based on educational stage
-            if vals.get('educational_stage')=='KG':
-                # Get next sequence for kindergarten classes
-                vals['class_id'] = self.env['ir.sequence'].next_by_code('kindergarten.classes.sequence')
 
-            elif vals.get('educational_stage')=='EL':
-                # Get next sequence for elementary classes
-                vals['class_id'] = self.env['ir.sequence'].next_by_code('elementary.classes.sequence')
 
-            elif vals.get('educational_stage')=='BA':
-                # Get next sequence for basic classes
-                vals['class_id'] = self.env['ir.sequence'].next_by_code('basic.classes.sequence')
 
-            else:
-                # Default to secondary classes sequence for any other stage
-                vals['class_id'] = self.env['ir.sequence'].next_by_code('secondary.classes.sequence')
         # Call superclass method with updated values to create the record
         return super(SchoolClass, self).create(vals)
 

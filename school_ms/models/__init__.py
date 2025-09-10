@@ -3,3 +3,4 @@
 from . import models
 from . import  school_students
 from . import school_classes
+from . import study_materials
