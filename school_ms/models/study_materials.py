@@ -7,13 +7,11 @@ class StudyMaterials(models.Model):
 
 
 
-    material_id=fields.Char('Material ID', required=True)
     name = fields.Char('Name', required=True)
     description = fields.Text('Description')
-    educational_stage = fields.Selection([
-        ('EL', 'Elementary'),
-        ('BA', 'Basic'),
-        ('SE', 'Secondary'),
-    ], required=True, default='EL')
+    educational_stage_id = fields.Many2one('education.stages')
+    educational_stage = fields.Selection(related='educational_stage_id.education_stage', readonly=True)
+    grad = fields.Selection(related='educational_stage_id.grad', readonly=True)
+    lessons_number=fields.Integer(string='Lessons')
     total_mark=fields.Integer('Total Mark')
     passing_mark=fields.Integer('Passing Mark')

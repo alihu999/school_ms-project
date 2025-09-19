@@ -8,16 +8,9 @@ class SchoolClass(models.Model):
     _rec_name = 'class_id'
 
     class_id = fields.Char('Name',readonly=True,tracking=True,default='New')
-    educational_stage=fields.Selection([
-        ('EL','Elementary'),
-        ('BA','Basic'),
-        ('SE','Secondary'),
-    ],readonly=True)
-    grad=fields.Selection([
-        ("first",'First Grad'),('second','Second Grad'),('third','Third Grad'),('fourth','Fourth Grad'),
-        ('fifth','Fifth Grad'),('sixth','Sixth Grad'),('seventh','Seventh Grad'),('eight','Eight Grad'),
-        ('ninth','Ninth Grad'),('tenth','Tenth Grad'),('eleventh','Eleventh Grad'),('twelfth','Twelfth Grad')
-    ])
+    educational_stage_id=fields.Many2one('education.stages')
+    educational_stage=fields.Selection(related='educational_stage_id.education_stage',readonly=True)
+    grad=fields.Selection(related='educational_stage_id.grad',readonly=True)
     total_number=fields.Integer('Total Number of Students',required=True,tracking=True)
     current_number=fields.Integer('Current Number of Students',
                                   required=True,tracking=True,
@@ -35,6 +28,8 @@ class SchoolClass(models.Model):
 
     @api.model
     def create(self,vals):
+
+        res = super().create(vals)
         # Map the 'grad' value to the correct sequence code
         grad_to_code = {
             'first': 'first.grad.sequence',
@@ -50,22 +45,11 @@ class SchoolClass(models.Model):
             'eleventh': 'eleventh.grad.sequence',
             'twelfth': 'twelfth.grad.sequence',
         }
-        sequence_code = grad_to_code.get(vals.get('grad'))
+        sequence_code = grad_to_code.get(res.grad)
         if vals.get('class_id','New')=='New':
-            vals['class_id'] = self.env['ir.sequence'].next_by_code(sequence_code)
-        if vals.get('grad') in list(grad_to_code.keys())[0:6]:
-            vals['educational_stage']="EL"
-        elif vals.get('grad') in list(grad_to_code.keys())[6:9]:
-            vals['educational_stage']="BA"
-        else:
-            vals['educational_stage']="SE"
+            res.class_id= self.env['ir.sequence'].next_by_code(sequence_code)
 
-
-
-
-        # Call superclass method with updated values to create the record
-        return super(SchoolClass, self).create(vals)
-
+        return res
 
     @api.depends('students')
     def _compute_current_number(self):
@@ -75,6 +59,10 @@ class SchoolClass(models.Model):
 
             # Calculate current student count by getting the length of the students relation
             rec.current_number=len(rec.students)
+            if rec.current_number == rec.total_number:
+                rec.state='complete'
+            if rec.current_number < rec.total_number and rec.state != 'draft' and rec.state != 'cancel':
+                rec.state='active'
 
 
     def open_change_class_state_wizard(self):

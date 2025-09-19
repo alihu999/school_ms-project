@@ -3,4 +3,5 @@ access_school_students_id,access_school_students,model_school_students,,1,1,1,1
 access_change_student_state_wizard_id,access_change_student_state_wizard,model_change_student_state_wizard,,1,1,1,1
 access_school_classes,access_school_classes,model_school_classes,,1,1,1,1
 access_change_class_state_wizard_id,access_change_class_state_wizard,model_change_class_state_wizard,,1,1,1,1
-access_study_materials_id,access_study_materials,model_study_materials,,1,1,1,
+access_study_materials_id,access_study_materials,model_study_materials,,1,1,1,1
+access_education_stages,access_education_stages,model_education_stages,,1,1,1,1

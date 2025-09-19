@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+
+    <record id="education_stages_form" model="ir.ui.view">
+        <field name="name">Education.Stages.Form</field>
+        <field name="model">education.stages</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                   <group>
+                       <field name="grad"/>
+                       <field name="education_stage"/>
+                       <field name="notes"/>
+                   </group>
+                    <notebook>
+                        <page string="Classes">
+                            <field name="class_id">
+                                <list
+                                        decoration-warning="state == 'draft'"
+                                        decoration-success="state == 'active'"
+                                        decoration-primary="state == 'complete'"
+                                        decoration-danger="state == 'cancel'">
+                                    <field name="class_id"/>
+                                    <field name="total_number"/>
+                                    <field name="current_number"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Study Materials">
+                            <field name="study_materials">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="total_mark"/>
+                                    <field name="passing_mark"/>
+                                    <field name="lessons_number"/>
+                                </list>
+                            </field>
+                        </page>
+                </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+
+
+    </record>
+
+    <record id="education_stages_list" model="ir.ui.view">
+        <field name="name">Education.Stages.List</field>
+        <field name="model">education.stages</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="education_stage"/>
+                <field name="grad"/>
+                <field name="class_id" widget="many2many_tags"/>
+            </list>
+        </field>
+    </record>
+
+
+    <record id="education_stages_action" model="ir.actions.act_window">
+        <field name="name"> Education Stages</field>
+        <field name="res_model">education.stages</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="education_stages_list"/>
+    </record>
+
+    <menuitem id ="education_stage_menuitem"
+              name="Education Stages"
+              parent="school_ms_root"
+              action="education_stages_action"
+    />
+</odoo>

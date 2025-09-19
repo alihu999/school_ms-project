@@ -14,7 +14,13 @@
                 <field name="name"/>
                 <field name="father_name"/>
                 <field name="last_name"/>
-                <field name="state"/>
+                <field name="state" widget="badge"
+                       decoration-warning="state == 'draft'"
+                       decoration-info="state == 'admitted'"
+                       decoration-success="state == 'active'"
+                       decoration-primary="state == 'alumni'"
+                       decoration-danger="state == 'terminated'"/>
+                <field name="class_id"/>
             </list>
         </field>
     </record>
@@ -48,9 +54,11 @@
                         <field name="religion"/>
                     </group>
                     <group string="Academic Information">
+                        <field name="grad"/>
                         <field name="educational_stage"/>
-                        <field name="class_id" invisible="1"/>
-                        <field name="class_id"/>
+                        <field name="class_id"
+                               readonly="state in ['New', 'draft', 'alumni','terminated']"
+                               domain="[('grad', '=', grad),('state','=','active')]"/>
                         <field name="note" widget="html"/>
                     </group>
                     <group string="Health Information">
@@ -70,7 +78,7 @@
         <field name="name">school.students.view.kanban</field>
         <field name="model">school.students</field>
         <field name="arch" type="xml">
-            <kanban class="o_kanban_school_students" >
+            <kanban default_group_by="grad" >
                 <field name="name"/>
                 <field name="last_name"/>
                 <field name="student_id"/>
@@ -85,6 +93,17 @@
                                 <strong><field name="name"/> <field name="last_name"/></strong>
                                 <br/>
                                 <span>Student ID: <field name="student_id"/></span>
+                                <br/>
+                                <span>Grad: <field name="grad"/></span>
+                                <br/>
+                                <span>Class ID: <field name="class_id"/></span>
+                                <br/>
+                                <field name="state" widget="badge"
+                                       decoration-warning="state == 'draft'"
+                                       decoration-info="state == 'admitted'"
+                                       decoration-success="state == 'active'"
+                                       decoration-primary="state == 'alumni'"
+                                       decoration-danger="state == 'terminated'"/>
                             </div>
 
                         </div>

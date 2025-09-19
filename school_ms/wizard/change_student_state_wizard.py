@@ -30,7 +30,7 @@ class ChangeStudentStateWizard(models.TransientModel):
         if vals.get('state')=='admitted':
 
             # Find an appropriate class for the student based on educational stage
-            class_id=self.set_class_id(student_id.educational_stage)
+            class_id=self.set_class_id(student_id.grad)
 
             # If no available class found, raise an error
             if not class_id:
@@ -50,11 +50,11 @@ class ChangeStudentStateWizard(models.TransientModel):
         # Call the superclass create method to complete the wizard creation
         return super(ChangeStudentStateWizard,self).create(vals)
 
-    def set_class_id(self, educational_stage):
+    def set_class_id(self, grad):
         # Search for active classes that match the student's educational stage
         # Retrieve only the fields needed for capacity checking
         classes = self.env['school.classes'].search_read([
-            ('educational_stage', '=', educational_stage),('state','=','active')
+            ('grad', '=', grad),('state','=','active')
         ], ['id', 'current_number', 'total_number'])
 
         # Iterate through classes to find one with available capacity

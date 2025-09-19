@@ -48,14 +48,15 @@ class SchoolStudent(models.Model):
         selection=[('muslim','Muslim'),('christian','Christian')])
 
     #Academic Information
-
+    grad = fields.Selection([
+        ("first", 'First Grad'), ('second', 'Second Grad'), ('third', 'Third Grad'), ('fourth', 'Fourth Grad'),
+        ('fifth', 'Fifth Grad'), ('sixth', 'Sixth Grad'), ('seventh', 'Seventh Grad'), ('eight', 'Eight Grad'),
+        ('ninth', 'Ninth Grad'), ('tenth', 'Tenth Grad'), ('eleventh', 'Eleventh Grad'), ('twelfth', 'Twelfth Grad')
+    ])
     class_id = fields.Many2one('school.classes',
-                               string='Class', tracking=True,readonly=True)
-    educational_stage = fields.Selection([
-        ('EL', 'Elementary'),
-        ('BA', 'Basic'),
-        ('SE', 'Secondary'),
-    ], required=True, default='EL')
+                               string='Class', tracking=True)
+    educational_stage = fields.Selection('school.classes','Educational Stage',
+                                        related='class_id.educational_stage',tracking=True)
     note = fields.Html(string='Note')
 
 

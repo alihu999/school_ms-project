@@ -6,9 +6,10 @@
         <field name="name">Study.Materials.List</field>
         <field name="model">study.materials</field>
         <field name="arch" type="xml">
-            <list>
+            <list create="false">
                 <field name="name"/>
                 <field name="educational_stage"/>
+                <field name="grad"/>
                 <field name="total_mark"/>
                 <field name="passing_mark"/>
             </list>
@@ -25,7 +26,9 @@
                         <field name="name"/>
                         <field name="description"/>
                         <field name="educational_stage"/>
-                        <field name="total_mark"/>
+                        <field name="grad"/>
+                        <field name="lessons_number"/>
+x                       <field name="total_mark"/>
                         <field name="passing_mark"/>
                     </group>
                 </sheet>
@@ -33,12 +36,24 @@
         </field>
     </record>
 
+    <record id="study_material_search" model="ir.ui.view">
+        <field name="name">Study.Material.Search</field>
+        <field name="model">study.materials</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter name="group_by_grad" string="Group By Grad" context="{'group_by':'grad'}"/>
+            </search>
+        </field>
+
+    </record>
+
 
     <record id="study_material_action" model="ir.actions.act_window">
         <field name="name">Study Material</field>
         <field name="res_model">study.materials</field>
-        <field name="view_mode">list</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" ref="study_materials_list"/>
+        <field name="context">{'create': False}</field>
     </record>
     <menuitem id="study_material_menuitem"
           name="Study Material"
