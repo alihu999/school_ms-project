@@ -1,4 +1,6 @@
 from odoo import fields, models,api
+from datetime import datetime
+
 
 
 class SchoolClass(models.Model):
@@ -23,6 +25,7 @@ class SchoolClass(models.Model):
     ],default='draft',required=True,readonly=True,tracking=True,)
     notes=fields.Html('Notes')
     students=fields.One2many('school.students','class_id',string='Students',tracking=True)
+    class_schedule=fields.One2many('class.schedule','class_id',string='Class Schedule')
 
 
 
@@ -75,3 +78,11 @@ class SchoolClass(models.Model):
 
         # Return the action definition to open the wizard
         return action
+
+    def download_class_schedule_pdf(self):
+        data={'saturday':{},'monday':{},'tuesday':{},'wednesday':{},'thursday':{}}
+        start_time_list=[]
+        for class_schedule in self.class_schedule:
+            start_time_list.append(class_schedule.start_time)
+        start_time_list.sort()
+        print(start_time_list)

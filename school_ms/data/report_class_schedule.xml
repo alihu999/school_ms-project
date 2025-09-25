@@ -1,0 +1,46 @@
+<odoo>
+  <data>
+   <record id="action_report_class_schedule" model="ir.actions.report">
+    <field name="name">class schedule</field>
+    <field name="model">school.classes</field>
+    <field name="report_type">qweb-pdf</field>
+    <field name="report_name">school_ms.report_class_schedule_template</field>
+    <field name="print_report_name">object.class_id</field>
+</record>
+
+      <template id="report_class_schedule_template">
+          <t t-call="web.html_container">
+              <t t-foreach="docs" t-as="o">
+                  <t t-call="web.external_layout">
+                      <div class="page" align="center">
+                          <h2 class="text-center"> Class Schedule : <span t-field="o.class_id"/></h2>
+                          <table class="table table-bordered">
+                              <thead>
+                                  <tr>
+                                      <th style="text-align: center;">time / day</th>
+                                      <t t-foreach="sorted(o.class_schedule.mapped('start_time'))" t-as="start_time">
+                                          <th style="text-align: center;"><span t-esc="start_time"/></th>
+                                      </t>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <t t-foreach="['saturday','monday','tuesday','wednesday','thursday']" t-as="day">
+                                      <tr>
+                                          <th style="text-align: center;"><span t-esc="day"/></th>
+                                          <t t-foreach="sorted(o.class_schedule.mapped('start_time'))" t-as="start_time">
+                                              <td style="text-align: center;">
+                                                  <t t-set="material" t-value="o.class_schedule.filtered(lambda l: l.day == day and l.start_time == start_time)"/>
+                                                  <span t-field="material.materials_id.name" t-if="material"/>
+                                              </td>
+                                          </t>
+                                      </tr>
+                                  </t>
+                              </tbody>
+                          </table>
+                      </div>
+                  </t>
+              </t>
+          </t>
+      </template>
+  </data>
+</odoo>

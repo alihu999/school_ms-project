@@ -11,6 +11,13 @@
                      <button name="open_change_class_state_wizard"
                             string="Change State"
                             type="object" class="btn-primary"/>
+                    <button
+                            name="%(action_report_class_schedule)d"
+                            string="Download class schedule"
+                            type="action"
+                            class="btn-primary"
+                            icon="fa-file-pdf-o"
+                    />
                     <field name="state"
                            widget="statusbar"
                            statusbar_visible="draft,active,complete,cancel"/>
@@ -33,6 +40,17 @@
                                     <field name="father_name"/>
                                     <field name="last_name"/>
                                     <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Class Schedule">
+                            <field name="class_schedule">
+                                <list>
+                                    <field name="materials_id"/>
+                                    <field name="day"/>
+                                    <field name="start_time"/>
+                                    <field name="duration"/>
+                                    <field name="end_time"/>
                                 </list>
                             </field>
                         </page>

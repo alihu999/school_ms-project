@@ -33,7 +33,9 @@ Long description of module's purpose
         'views/school_classes_view.xml',
         'views/study_material_view.xml',
         'views/education_stages_view.xml',
+        'views/class_schedule_view.xml',
         'data/sequence_data.xml',
+        'data/report_class_schedule.xml'
 
     ],
 

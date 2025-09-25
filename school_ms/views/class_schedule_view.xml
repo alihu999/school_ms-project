@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <record id="class_schedule_list" model="ir.ui.view">
+        <field name="name">Class.Schedule.List</field>
+        <field name="model">class.schedule</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="class_id"/>
+                <field name="grad"/>
+                <field name="materials_id"/>
+                <field name="teacher"/>
+                <field name="day"/>
+                <field name="start_time"/>
+                <field name="duration"/>
+                <field name="end_time"/>
+            </list>
+        </field>
+
+    </record>
+    <record id="class_schedule_form" model="ir.ui.view">
+        <field name="name">Class.Schedule.List</field>
+        <field name="model">class.schedule</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="class_id" readonly="True"/>
+                        <field name="grad" readonly="True"/>
+                        <field name="materials_id" domain="[('grad','=',grad)]"/>
+                        <field name="teacher"/>
+                        <field name="day"/>
+                        <field name="start_time" placeholder="EX: 09:45 (The 24-hour time format )"/>
+                        <field name="duration"/>
+                        <field name="end_time"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="class_schedule_action" model="ir.actions.act_window">
+        <field name="name">Class Schedule</field>
+        <field name="res_model">class.schedule</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="class_schedule_list" />
+    </record>
+
+    <menuitem id="class_schedule_menuitem"
+              name="Class Schedule"
+              parent="school_ms_root"
+              action="class_schedule_action"
+    />
+</odoo>
