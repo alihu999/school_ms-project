@@ -48,6 +48,7 @@
                         <field name="last_name"/>
                         <field name="father_name"/>
                         <field name="mother_name"/>
+                        <field name="gender"/>
                         <field name="date_of_birth"/>
                         <field name="age"/>
                         <field name="nationality_id"/>

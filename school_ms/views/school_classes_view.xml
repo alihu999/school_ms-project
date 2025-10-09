@@ -137,7 +137,7 @@
 
     <menuitem id="school_classes_menuitem"
               name="Classes"
-              parent="school_ms_root"
+              parent="classes_menuitem"
               action="school_classes_action"
     />
 

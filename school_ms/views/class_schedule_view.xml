@@ -49,7 +49,7 @@
 
     <menuitem id="class_schedule_menuitem"
               name="Class Schedule"
-              parent="school_ms_root"
+              parent="classes_menuitem"
               action="class_schedule_action"
     />
 </odoo>

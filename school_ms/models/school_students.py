@@ -2,6 +2,12 @@ from datetime import date
 from odoo import fields, models, api
 from odoo.exceptions import UserError
 
+import random
+from datetime import date, timedelta
+import logging
+
+_logger = logging.getLogger(__name__)
+
 
 
 
@@ -30,6 +36,7 @@ class SchoolStudent(models.Model):
     #Personal Information
     name = fields.Char('First Name',required=True,tracking=True)
     last_name = fields.Char('Last Name',required=True,tracking=True)
+    gender=fields.Selection([('male','Male'),('female','Female')],required=True)
     date_of_birth = fields.Date(string='Date of Birth',required=True)
     age=fields.Integer('Age',compute='_compute_age',store=True,tracking=True)
     image=fields.Binary(string='Image',required=True)
