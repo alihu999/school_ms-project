@@ -6,7 +6,7 @@
         <field name="name">Study.Materials.List</field>
         <field name="model">study.materials</field>
         <field name="arch" type="xml">
-            <list create="false">
+            <list>
                 <field name="name"/>
                 <field name="educational_stage"/>
                 <field name="grad"/>

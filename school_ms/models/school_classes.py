@@ -79,10 +79,3 @@ class SchoolClass(models.Model):
         # Return the action definition to open the wizard
         return action
 
-    def download_class_schedule_pdf(self):
-        data={'saturday':{},'monday':{},'tuesday':{},'wednesday':{},'thursday':{}}
-        start_time_list=[]
-        for class_schedule in self.class_schedule:
-            start_time_list.append(class_schedule.start_time)
-        start_time_list.sort()
-        print(start_time_list)

@@ -36,3 +36,4 @@ class ClassSchedule(models.Model):
             start_time=datetime.strptime(str(rec.start_time), "%H:%M")
             rec.end_time = str((start_time + timedelta(minutes=rec.duration)).time())
 
+
