@@ -74,6 +74,7 @@ class SchoolStudent(models.Model):
         string='Blood Group',required=True
     )
     medical_information=fields.Text(string='Medical Information',required=True)
+    academic_records=fields.One2many('academic.records',inverse_name='student_id')
 
 
 

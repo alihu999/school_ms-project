@@ -7,14 +7,14 @@
             <field name="model">school.classes</field>
             <field name="report_type">qweb-pdf</field>
             <field name="report_name">school_ms.report_students_class_template</field>
-            <field name="print_report_name">object.class_id</field>
+            <field name="print_report_name">f"Class Student:{object.class_id}"</field>
         </record>
         <template id="report_students_class_template">
           <t t-call="web.html_container">
               <t t-foreach="docs" t-as="o">
                   <t t-call="web.external_layout">
                       <div class="page" align="center">
-                          <h2 class="text-center"> Class: <span t-field="o.class_id"/></h2>
+                          <h2 class="text-center"> Class Student: <span t-field="o.class_id"/></h2>
                           <table class="table table-bordered">
                               <thead>
                                   <tr>
@@ -28,14 +28,13 @@
                               <tbody>
                                   <t t-foreach="sorted(o.students, key=lambda student: student.name)" t-as="student">
                                       <tr>
-                                          <td t-esc="student.student_id"/>
-                                          <td t-esc="student.name"/>
-                                          <td t-esc="student.last_name"/>
-                                          <td t-esc="student.father_name.name"/>
-                                          <td t-esc="student.mother_name.name"/>
+                                          <td style="text-align: center;" t-esc="student.student_id"/>
+                                          <td style="text-align: center;" t-esc="student.name"/>
+                                          <td style="text-align: center;" t-esc="student.last_name"/>
+                                          <td style="text-align: center;" t-esc="student.father_name.name"/>
+                                          <td style="text-align: center;" t-esc="student.mother_name.name"/>
                                       </tr>
                                   </t>
-
                               </tbody>
                           </table>
                       </div>

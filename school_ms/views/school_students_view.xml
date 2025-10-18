@@ -66,6 +66,17 @@
                         <field name="blood_group"/>
                         <field name="medical_information"/>
                     </group>
+                    <notebook>
+                        <page string="Academic Records">
+                            <field name="academic_records">
+                                <list>
+                                    <field name="material_name"/>
+                                    <field name="quiz"/>
+                                    <field name="exam"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
                 <chatter/>
             </form>

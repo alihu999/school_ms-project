@@ -6,3 +6,4 @@ access_change_class_state_wizard_id,access_change_class_state_wizard,model_chang
 access_study_materials_id,access_study_materials,model_study_materials,,1,1,1,1
 access_education_stages,access_education_stages,model_education_stages,,1,1,1,1
 access_class_schedule,access_class_schedule,model_class_schedule,,1,1,1,1
+access_academic_records,access_academic_records,model_academic_records,,1,1,1,1

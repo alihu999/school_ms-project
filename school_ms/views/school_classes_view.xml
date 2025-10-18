@@ -144,7 +144,7 @@
 
     <menuitem id="school_classes_menuitem"
               name="Classes"
-              parent="classes_menuitem"
+              parent="school_ms_root"
               action="school_classes_action"
     />
 
