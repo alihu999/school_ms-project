@@ -13,24 +13,26 @@
               <t t-foreach="docs" t-as="o">
                   <t t-call="web.external_layout">
                       <div class="page" align="center">
-                          <h2 class="text-center"> Class Schedule : <span t-field="o.class_id"/></h2>
-                          <table class="table table-bordered">
+                          <h2 class="text-center">Class Schedule: <span t-field="o.class_id"/></h2>
+                          <t t-set="schedule_data" t-value="o.download_class_schedule_action()"/>
+                          <t t-set="days" t-value="['saturday', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday']"/>
+                          <t t-set="day_names" t-value="{'saturday': 'Saturday', 'sunday': 'Sunday', 'monday': 'Monday', 'tuesday': 'Tuesday', 'wednesday': 'Wednesday', 'thursday': 'Thursday', 'friday': 'Friday'}"/>
+                          <table class="table table-bordered" style="width: 100%; border-collapse: collapse;">
                               <thead>
                                   <tr>
-                                      <th style="text-align: center;">time / day</th>
-                                      <t t-foreach="sorted(o.class_schedule.mapped('start_time'))" t-as="start_time">
-                                          <th style="text-align: center;"><span t-esc="start_time"/></th>
+                                      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Day/Time</th>
+                                      <t t-foreach="schedule_data['times']" t-as="time">
+                                          <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;" t-esc="time"/>
                                       </t>
                                   </tr>
                               </thead>
                               <tbody>
-                                  <t t-foreach="['saturday','monday','tuesday','wednesday','thursday']" t-as="day">
+                                  <t t-foreach="days" t-as="day">
                                       <tr>
-                                          <th style="text-align: center;"><span t-esc="day"/></th>
-                                          <t t-foreach="sorted(o.class_schedule.mapped('start_time'))" t-as="start_time">
-                                              <td style="text-align: center;">
-                                                  <t t-set="material" t-value="o.class_schedule.filtered(lambda l: l.day == day and l.start_time == start_time)"/>
-                                                  <span t-field="material.materials_id.name" t-if="material"/>
+                                          <td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;" t-esc="day_names[day]"/>
+                                          <t t-foreach="schedule_data['times']" t-as="time">
+                                              <td style="border: 1px solid #ddd; padding: 8px;">
+                                                  <t t-esc="schedule_data['schedule'][day].get(time, '')"/>
                                               </td>
                                           </t>
                                       </tr>

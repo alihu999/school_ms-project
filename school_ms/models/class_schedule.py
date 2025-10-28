@@ -16,10 +16,12 @@ class ClassSchedule(models.Model):
     teacher=fields.Many2one('res.users', string='Teacher', required=True)
     day = fields.Selection([
         ('saturday', 'Saturday'),
+        ('sunday', 'Sunday'),
         ('monday', 'Monday'),
         ('tuesday', 'Tuesday'),
         ('wednesday', 'Wednesday'),
         ('thursday', 'Thursday'),
+        ('friday', 'Friday'),
     ], string='Day', required=True)
     start_time=fields.Char(string='Start Time', required=True)
     duration = fields.Float(string='Duration (minute)',required=True)
