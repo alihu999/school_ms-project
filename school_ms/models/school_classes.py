@@ -85,5 +85,5 @@ class SchoolClass(models.Model):
         for rec in self.class_schedule:
             times.append(rec.start_time)
             schedule[rec.day].update({rec.start_time:rec.materials_id.name})
-        return {'times':sorted(set(times)),'schedule':schedule}
-
+        sorted_times = sorted(set(times), key=lambda x: datetime.strptime(x, '%H:%M'))
+        return {'times':sorted_times,'schedule':schedule}
