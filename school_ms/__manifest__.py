@@ -20,10 +20,11 @@ Long description of module's purpose
     'application': True,
 
     # any module necessary for this one to work correctly
-    'depends': ['base','contacts','mail'],
+    'depends': ['base','contacts','mail','account'],
 
     # always loaded
     'data': [
+        'security/security.xml',
         'security/ir.model.access.csv',
         'views/templates.xml',
         'views/menus.xml',

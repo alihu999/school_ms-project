@@ -38,6 +38,7 @@ class ChangeStudentStateWizard(models.TransientModel):
             # Assign the student to the found class
             else:
                 student_id.write({'class_id':class_id})
+                student_id.create_student_installment()
 
         # Format the state change reason with HTML markup for display in notes
         reason=f'<li><span class="h4-fs"><strong>change state:</strong></span>{vals['reason']}</li>'

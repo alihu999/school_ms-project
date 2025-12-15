@@ -11,6 +11,11 @@
                    <group>
                        <field name="grad"/>
                        <field name="education_stage"/>
+                       <field name="currency_id"/>
+                       <field name="annual_installment" />
+                       <field name="number_of_installment"/>
+                       <field name="monthly_installment"/>
+                       <field name="collection_start_date"/>
                        <field name="notes"/>
                    </group>
                     <notebook>
@@ -54,6 +59,10 @@
                 <field name="education_stage"/>
                 <field name="grad"/>
                 <field name="class_id" widget="many2many_tags"/>
+                <field name="annual_installment" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="monthly_installment" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="currency_id"/>
+
             </list>
         </field>
     </record>

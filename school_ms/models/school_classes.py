@@ -63,9 +63,11 @@ class SchoolClass(models.Model):
             # Calculate current student count by getting the length of the students relation
             rec.current_number=len(rec.students)
             if rec.current_number == rec.total_number:
-                rec.state='complete'
+                rec.sudo().write({'state':'complete'})
+                #rec.state='complete'
             if rec.current_number < rec.total_number and rec.state != 'draft' and rec.state != 'cancel':
-                rec.state='active'
+                rec.sudo().write({'state':'active'})
+                #rec.state='active'
 
 
     def open_change_class_state_wizard(self):

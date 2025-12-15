@@ -25,18 +25,27 @@ class EducationStages(models.Model):
                              'educational_stage_id',string='Class ID')
     study_materials=fields.One2many('study.materials',
                                     'educational_stage_id')
+    currency_id = fields.Many2one(
+        'res.currency',
+        string='Currency',
+        required=True,
+        default=lambda self: self.env.company.currency_id
+    )
+    annual_installment=fields.Monetary('Annual Installment',required=True,currency_field='currency_id')
+    number_of_installment=fields.Integer('Number Of Installments',required=True,default=6)
+    monthly_installment=fields.Monetary('Monthly Installment',
+                                        default=0,
+                                        readonly=True,
+                                        compute='_compute_monthly_installment',
+                                        currency_field='currency_id')
+    collection_start_date=fields.Datetime('Collection Start Date',
+                                          required=True,default=fields.Date.today())
 
-    #study_material=fields.One2many()
 
 
-
-    @api.onchange('grad')
-    def _onchange_grad(self):
-        pass
 
     @api.model
     def create(self, vals):
-        print(vals)
         grad_to_code = {
             'first': 'first.grad.sequence',
             'second': 'second.grad.sequence',
@@ -58,3 +67,10 @@ class EducationStages(models.Model):
         else:
             vals ['education_stage'] = "SE"
         return super(EducationStages, self).create(vals)
+
+    @api.depends('number_of_installment')
+    def _compute_monthly_installment(self):
+        for record in self:
+            if record.number_of_installment:
+                record.monthly_installment=record.annual_installment/record.number_of_installment
+
