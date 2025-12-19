@@ -37,7 +37,8 @@ Long description of module's purpose
         'views/class_schedule_view.xml',
         'data/sequence_data.xml',
         'data/report_class_schedule.xml',
-        'data/report_students_info.xml'
+        'data/report_students_info.xml',
+        'data/cron_jobs.xml'
 
     ],
 

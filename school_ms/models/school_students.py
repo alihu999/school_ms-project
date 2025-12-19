@@ -70,7 +70,7 @@ class SchoolStudent(models.Model):
     )
     medical_information=fields.Text(string='Medical Information',required=True)
     academic_records=fields.One2many('academic.records',inverse_name='student_id')
-    school_installment=fields.One2many('school.installment',inverse_name='student_id')
+    school_installment=fields.One2many('account.move',inverse_name='student_id')
 
 
 
@@ -122,6 +122,7 @@ class SchoolStudent(models.Model):
         invoice_date_due=self.class_id.educational_stage_id.collection_start_date
         for installment in range(number_of_installment):
             invoice=self.env['account.move'].sudo().create({
+                'student_id':self.id,
                 'move_type':'out_invoice',
                 'partner_id':self.father_name.id,
                 'invoice_date_due':invoice_date_due+ relativedelta(months=installment),
@@ -132,14 +133,6 @@ class SchoolStudent(models.Model):
                     'price_unit':monthly_installment,
                 })]
 
-            })
-            self.env['school.installment'].sudo().create({
-                'student_id':self.id,
-                'due_date':invoice_date_due+ relativedelta(months=installment),
-                'currency_id':currency_id.id,
-                'amount':monthly_installment ,
-                'status':'draft',
-                'invoice_id':invoice.id
             })
             invoice.action_post()
 

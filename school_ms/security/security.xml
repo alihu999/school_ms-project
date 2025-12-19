@@ -31,10 +31,7 @@
         <field name="name">Academic Records</field>
         <field name="category_id" ref="school_ms_category"/>
     </record>
-    <record id="group_school_installment" model="res.groups">
-        <field name="name">School Installment </field>
-        <field name="category_id" ref="school_ms_category"/>
-    </record>
+
 
 
 

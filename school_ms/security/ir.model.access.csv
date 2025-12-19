@@ -13,6 +13,4 @@ access_class_schedule_user,access.class.schedule.user,model_class_schedule,,1,0,
 access_class_schedule_group,access.class.schedule.group,model_class_schedule,group_class_schedule,1,1,1,1
 access_academic_records_user,access.academic.records.user,model_academic_records,,1,0,0,0
 access_academic_records_group,access.academic.records.group,model_academic_records,group_academic_records,1,1,1,1
-access_school_installment_user,access.school.installment.user,model_school_installment,,1,0,0,0
-access_school_installment_group,access.school.installment.group,model_school_installment,group_school_installment,1,1,1,1
 ,,,,,,,

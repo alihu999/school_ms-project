@@ -78,13 +78,6 @@
                         </page>
                         <page string="School Installment" >
                             <field name="school_installment">
-                                <list create="False" edit="False" delete="false">
-                                    <field name="due_date"/>
-                                    <field name="amount"/>
-                                    <field name="currency_id"/>
-                                    <field name="status"/>
-                                    <field name="invoice_id"/>
-                                </list>
                             </field>
                         </page>
                     </notebook>
