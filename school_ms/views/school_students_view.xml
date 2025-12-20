@@ -32,12 +32,18 @@
         <field name="arch" type="xml">
             <form>
                 <headr>
-                    <button name="open_change_student_state_wizard"
-                            string="Change State"
-                            type="object" class="btn-primary"/>
-                    <field name="state"
-                           widget="statusbar"
-                           statusbar_visible="draft,admitted,active,alumni,terminated"/>
+                    <div class="position-relative d-flex justify-content-between mb-0 mb-md-2 pb-2 pb-md-0">
+                        <div class="d-flex align-items-center align-content-around flex-wrap gap-1">
+                            <button name="open_change_student_state_wizard"
+                                    string="Change State"
+                                    type="object" class="btn-primary"/>
+                        </div>
+                        <div>
+                            <field name="state"
+                                   widget="statusbar"
+                                   statusbar_visible="draft,admitted,active,alumni,terminated"/>
+                        </div>
+                    </div>
                 </headr>
 
                 <sheet>

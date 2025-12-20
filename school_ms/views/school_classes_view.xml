@@ -8,26 +8,29 @@
         <field name="arch" type="xml">
             <form create="false">
                 <headr>
-                    <button name="open_change_class_state_wizard"
-                            string="Change State"
-                            type="object" class="btn-primary"/>
-                    <button
-                            name="%(action_report_class_schedule)d"
-                            string="Download class schedule"
-                            type="action"
-                            class="btn-primary"
-                            icon="fa-file-pdf-o"
-                    />
-                    <button
-                            name="%(action_report_students_class_info)d"
-                            string="Download students info"
-                            type="action"
-                            class="btn-primary"
-                            icon="fa-file-pdf-o"
-                    />
-                    <field name="state"
-                           widget="statusbar"
-                           statusbar_visible="draft,active,complete,cancel"/>
+                    <div class="position-relative d-flex justify-content-between mb-0 mb-md-2 pb-2 pb-md-0">
+                        <div class="d-flex align-items-center align-content-around flex-wrap gap-1">
+                            <button name="open_change_class_state_wizard"
+                                    string="Change State"
+                                    type="object" class="btn btn-primary me-10"/>
+                            <button name="%(action_report_class_schedule)d"
+                                    string="Download class schedule"
+                                    type="action"
+                                    class="btn-primary"
+                                    icon="fa-file-pdf-o"/>
+                            <button
+                                    name="%(action_report_students_class_info)d"
+                                    string="Download students info"
+                                    type="action"
+                                    class="btn-primary"
+                                    icon="fa-file-pdf-o"/>
+                        </div>
+                        <div>
+                            <field name="state"
+                                   widget="statusbar"
+                                   statusbar_visible="draft,active,complete,cancel"/>
+                        </div>
+                    </div>
                 </headr>
                 <sheet>
                     <h1><field name="class_id" class="mb-2"/></h1>
