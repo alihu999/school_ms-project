@@ -5,5 +5,9 @@
               name="School Management System"
               sequence="10"
     />
+    <menuitem id="school_classes_menuitem_root"
+              name="Classes"
+              parent="school_ms_root"
+    />
 
 </odoo>

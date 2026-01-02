@@ -130,9 +130,9 @@
         <field name="model">school.classes</field>
         <field name="arch" type="xml">
             <search>
-                <filter name="group_by_grad" string="Grop By Grad" context="{'group_by':'grad'}"/>
+                <filter name="group_by_grad" string="Group By Grad" context="{'group_by':'grad'}"/>
                 <filter name="group_by_educational_stage"
-                        string="Grop By Educational Stage" context="{'group_by':'educational_stage'}"/>
+                        string="Group By Educational Stage" context="{'group_by':'educational_stage'}"/>
             </search>
         </field>
     </record>
@@ -147,7 +147,7 @@
 
     <menuitem id="school_classes_menuitem"
               name="Classes"
-              parent="school_ms_root"
+              parent="school_classes_menuitem_root"
               action="school_classes_action"
     />
 
